@@ -91,6 +91,19 @@ public class Peripheral extends BluetoothGattCallback {
         }
     }
 
+    @Override
+    public void onMtuChanged(BluetoothGatt gatt, int mtu, int status) {
+        LOG.d(TAG, "mtu=" + mtu + ", status=" + status);
+        super.onMtuChanged(gatt, mtu, status);
+    }
+
+    public void requestMtu(int mtuValue) {
+        if (gatt != null) {
+            LOG.d(TAG, "requestMtu mtu=" + mtuValue);
+            gatt.requestMtu(mtuValue);
+        }
+    }
+
     public JSONObject asJSONObject()  {
 
         JSONObject json = new JSONObject();
